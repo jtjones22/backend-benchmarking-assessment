@@ -25,8 +25,6 @@ class TestAnagrams(unittest.TestCase):
             short_list = f.read().split()
         self.run_find_anagrams(short_list, 0.005)
 
-
-    @unittest.skip("Remove this line once short test passes")
     def test_long(self):
         """ Test find_anagrams with long word list. """
         with open("words/long.txt") as f:
