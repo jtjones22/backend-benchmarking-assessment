@@ -13,6 +13,13 @@ __author__ = "Jonathan Jones"
 import sys
 import cProfile
 from collections import defaultdict
+import argparse
+
+
+def create_parser():
+    parser = argparse.ArgumentParser("Finds anagrams in text file.")
+    parser.add_argument("file", help="File you wish to search through")
+    return parser
 
 
 def alphabetized(string):
@@ -50,7 +57,9 @@ if __name__ == "__main__":
         print("Please specify a word file!")
         sys.exit(1)
     else:
-        with open(sys.argv[1], 'r') as handle:
+        parser = create_parser()
+        args = parser.parse_args()
+        with open(args.file, 'r') as handle:
             words = handle.read().split()
             cProfile.run('find_anagrams(words)', sort='cumtime')
             print(find_anagrams(words))
